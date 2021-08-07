@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using MudBlazor;
+using MudBlazor.Services;
 
 namespace BlazorChat.Client
 {
@@ -25,6 +27,8 @@ namespace BlazorChat.Client
             builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("BlazorChat.ServerAPI"));
 
             builder.Services.AddApiAuthorization();
+
+            builder.Services.AddMudServices(c => c.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomRight);
 
             await builder.Build().RunAsync();
         }
